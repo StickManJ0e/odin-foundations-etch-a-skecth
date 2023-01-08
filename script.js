@@ -3,8 +3,6 @@ const colorModeButton = document.querySelector('#colorModeButton');
 const rainbowModeButton = document.querySelector('#rainbowModeButton');
 const eraseModeButton = document.querySelector('#eraseModeButton');
 let pixels;
-let paintMode, colorMode, rainbowMode, eraseMode;
-paintMode = colorMode;
 let numberOfSquares = 16;
 
 //Create divs to represent each pixel
@@ -24,7 +22,7 @@ function createGrid(numberOfSquares) {
 
     //Updates pixel nodelist and calls paintPixel function
     pixels = document.querySelectorAll('.pixels');
-    paintColor(pixels);
+    colorMode(pixels);
 };
 
 //Create grid at page load up with a defult of 16x16 pixels
@@ -62,9 +60,9 @@ window.addEventListener("mouseup", () => {
 
 //Defult color mode
 colorModeButton.addEventListener('click', () => {
-    paintColor(pixels);
+    colorMode(pixels);
 })
-function paintColor(pixels) {
+function colorMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
@@ -76,9 +74,9 @@ function paintColor(pixels) {
 
 //Erase mode
 eraseModeButton.addEventListener('click', () => {
-    paintErase(pixels);
+    eraseMode(pixels);
 })
-function paintErase(pixels) {
+function eraseMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
