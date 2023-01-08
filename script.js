@@ -3,7 +3,9 @@ const colorModeButton = document.querySelector('#colorModeButton');
 const rainbowModeButton = document.querySelector('#rainbowModeButton');
 const eraseModeButton = document.querySelector('#eraseModeButton');
 let pixels;
+let randomColor;
 let numberOfSquares = 16;
+
 
 //Create divs to represent each pixel
 //Change the canvas dimensions accoriding to the chosen # of squares
@@ -58,31 +60,61 @@ window.addEventListener("mouseup", () => {
     isMouseDown = false;
 });
 
-//Defult color mode
+//When color mode button is pressed, color mode function is called
 colorModeButton.addEventListener('click', () => {
     colorMode(pixels);
 })
+
 function colorMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
+                pixel.classList.remove('rainbowPixel');
                 pixel.classList.add('colouredPixel');
             }
         });
     });
 };
 
-//Erase mode
+//When erase mode button is pressed, erase mode function is called
 eraseModeButton.addEventListener('click', () => {
     eraseMode(pixels);
 })
+
 function eraseMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
                 pixel.classList.remove('colouredPixel');
+                pixel.classList.remove('rainbowPixel');
             }
         });
     });
 };
+
+//Random Color mode
+function getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+rainbowModeButton.addEventListener('click', () => {
+    rainbowMode(pixels);
+});
+
+function rainbowMode(pixels) {
+    pixels.forEach((pixel) => {
+        pixel.addEventListener('mousemove', () => {
+            if (isMouseDown) {
+                pixel.classList.remove('colouredPixel');
+                pixel.classList.add('rainbowPixel');
+                pixel.style.backgroundColor = getRandomColor();
+            }
+        });
+    });
+}
 
