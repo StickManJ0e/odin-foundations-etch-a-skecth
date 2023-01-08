@@ -3,9 +3,7 @@ const colorModeButton = document.querySelector('#colorModeButton');
 const rainbowModeButton = document.querySelector('#rainbowModeButton');
 const eraseModeButton = document.querySelector('#eraseModeButton');
 let pixels;
-let randomColor;
 let numberOfSquares = 16;
-
 
 //Create divs to represent each pixel
 //Change the canvas dimensions accoriding to the chosen # of squares
@@ -92,7 +90,11 @@ function eraseMode(pixels) {
     });
 };
 
-//Random Color mode
+//Changes mode to rainbow
+rainbowModeButton.addEventListener('click', () => {
+    rainbowMode(pixels);
+});
+//Generates a random hex decimal
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
     let color = '#';
@@ -101,11 +103,7 @@ function getRandomColor() {
     }
     return color;
 }
-
-rainbowModeButton.addEventListener('click', () => {
-    rainbowMode(pixels);
-});
-
+//Gets a random color and changes background of each pixel to that color
 function rainbowMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
