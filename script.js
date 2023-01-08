@@ -1,22 +1,32 @@
 const canvas = document.querySelector('#canvas');
+const colorModeButton = document.querySelector('#colorModeButton');
+const rainbowModeButton = document.querySelector('#rainbowModeButton');
+const eraseModeButton = document.querySelector('#eraseModeButton');
 let pixels;
+let paintMode, colorMode, rainbowMode, eraseMode;
+paintMode = colorMode;
 let numberOfSquares = 16;
 
 //Create divs to represent each pixel
 //Change the canvas dimensions accoriding to the chosen # of squares
 function createGrid(numberOfSquares) {
+    //Make grid dimensions match numberOfSquares and slign pixels accordingly
     canvas.setAttribute('style', 
     `grid-template-columns: repeat(${numberOfSquares}, 1fr);
     grid-auto-rows: 1fr;`);
     
+    //Create desired amount of pixels 
     for (let i = 0; i < (Math.pow(numberOfSquares, 2)); i++) {
         const pixels = document.createElement('div');
         pixels.classList.add('pixels');
         canvas.appendChild(pixels);
     };
+
+    //Updates pixel nodelist and calls paintPixel function
     pixels = document.querySelectorAll('.pixels');
-    paintPixels(pixels);
+    paintColor(pixels);
 };
+
 //Create grid at page load up with a defult of 16x16 pixels
 createGrid(numberOfSquares);
 
@@ -40,7 +50,7 @@ gridDimensionsButton.addEventListener('click', () => {
     createGrid(numberOfSquares);
 });
 
-//Paint the pixels if mouse is down.
+//Use specific paint mode if mouse is down
 let isMouseDown = false;
 
 window.addEventListener("mousedown", () => {
@@ -50,7 +60,11 @@ window.addEventListener("mouseup", () => {
     isMouseDown = false;
 });
 
-function paintPixels(pixels) {
+//Defult color mode
+colorModeButton.addEventListener('click', () => {
+    paintColor(pixels);
+})
+function paintColor(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
@@ -58,7 +72,19 @@ function paintPixels(pixels) {
             }
         });
     });
-}
+};
 
-
+//Erase mode
+eraseModeButton.addEventListener('click', () => {
+    paintErase(pixels);
+})
+function paintErase(pixels) {
+    pixels.forEach((pixel) => {
+        pixel.addEventListener('mousemove', () => {
+            if (isMouseDown) {
+                pixel.classList.remove('colouredPixel');
+            }
+        });
+    });
+};
 
