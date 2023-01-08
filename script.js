@@ -15,10 +15,23 @@ function createGrid(numberOfSquares) {
     };
 }
 createGrid(numberOfSquares);
-
+//Paint the pixels if mouse is down.
 const pixels = document.querySelectorAll('.pixels');
+let isMouseDown = false;
+window.addEventListener("mousedown", () => {
+    isMouseDown = true;
+});
+
+window.addEventListener("mouseup", () => {
+    isMouseDown = false;
+});
+
 pixels.forEach((pixel) => {
     pixel.addEventListener('mousemove', () => {
-        pixel.classList.add('colouredPixel');
+        if (isMouseDown) {
+            pixel.classList.add('colouredPixel');
+        }
     });
-})
+});
+
+
