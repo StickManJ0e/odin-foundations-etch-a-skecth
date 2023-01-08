@@ -31,6 +31,11 @@ function deleteGrid(pixels) {
 const gridDimensionsButton = document.querySelector('#gridDimensionsButton');
 gridDimensionsButton.addEventListener('click', () => {
     numberOfSquares = parseInt(prompt('What PixelxPixel Grid Size Do You Want?'));
+    if (numberOfSquares > 100) {
+        alert('Max Size is 100x100');
+        deleteGrid(pixels);
+        createGrid(100);
+    }
     deleteGrid(pixels);
     createGrid(numberOfSquares);
 });
