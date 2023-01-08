@@ -1,3 +1,17 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5vh;
+}
+
 #canvas {
     border: 1px solid black;
     width: 500px;
