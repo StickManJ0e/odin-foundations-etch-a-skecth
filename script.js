@@ -1,8 +1,11 @@
 const canvas = document.querySelector('#canvas');
-const colorModeButton = document.querySelector('#colorModeButton');
-const rainbowModeButton = document.querySelector('#rainbowModeButton');
-const eraseModeButton = document.querySelector('#eraseModeButton');
+const colorModeButton = document.querySelector('#color-mode-button');
+const greyscaleModeButton = document.querySelector('#greyscale-mode-button');
+const rainbowModeButton = document.querySelector('#rainbow-mode-button');
+const eraseModeButton = document.querySelector('#erase-mode-button');
+const gridDimensionsButton = document.querySelector('#grid-size-button');
 let pixels;
+let defultColor = 'black';
 let numberOfSquares = 16;
 
 //Create divs to represent each pixel
@@ -36,7 +39,6 @@ function deleteGrid(pixels) {
 };
 
 //Change the grid size
-const gridDimensionsButton = document.querySelector('#gridDimensionsButton');
 gridDimensionsButton.addEventListener('click', () => {
     numberOfSquares = parseInt(prompt('What PixelxPixel Grid Size Do You Want?'));
     if (numberOfSquares > 100) {
@@ -67,7 +69,7 @@ function colorMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
-                pixel.classList.add('colouredPixel');
+                pixel.style.backgroundColor = defultColor;
             }
         });
     });
@@ -82,7 +84,6 @@ function eraseMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
-                pixel.classList.remove('colouredPixel');
                 pixel.style.backgroundColor = 'white';
             }
         });
@@ -107,10 +108,25 @@ function rainbowMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
-                pixel.classList.remove('colouredPixel');
                 pixel.style.backgroundColor = getRandomColor();
             }
         });
     });
 }
+//Button changes to grey scale mode which increases the opacity of black by 10% each time mouse is over pixel
+// greyscaleModeButton.addEventListener('click', () => {
+//     greyscaleMode(pixels);
+// });
+
+// function greyscaleMode(pixels) {
+//     pixels.forEach((pixel) => {
+//         pixel.addEventListener('mousemove', () => {
+//             if (isMouseDown) {
+//                 pixel.style.backgroundColor = 'white';
+//                 pixel.classList.remove('colouredPixel');
+//                 pixel.style.backgroundColor = ('black', '0.1');
+//             }
+//         });
+//     });
+// }
 
