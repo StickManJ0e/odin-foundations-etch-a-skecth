@@ -67,7 +67,6 @@ function colorMode(pixels) {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
-                pixel.classList.remove('rainbowPixel');
                 pixel.classList.add('colouredPixel');
             }
         });
@@ -84,7 +83,7 @@ function eraseMode(pixels) {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
                 pixel.classList.remove('colouredPixel');
-                pixel.classList.remove('rainbowPixel');
+                pixel.style.backgroundColor = 'white';
             }
         });
     });
@@ -109,7 +108,6 @@ function rainbowMode(pixels) {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
                 pixel.classList.remove('colouredPixel');
-                pixel.classList.add('rainbowPixel');
                 pixel.style.backgroundColor = getRandomColor();
             }
         });

@@ -9,6 +9,13 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    gap: 5vh;
+}
+
+.settings {
+    display: flex;
+    flex-direction: column;
     gap: 5vh;
 }
 
