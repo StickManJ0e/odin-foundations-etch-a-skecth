@@ -1,4 +1,5 @@
 const canvas = document.querySelector('#canvas');
+let pixels;
 let numberOfSquares = 16;
 
 //Create divs to represent each pixel
@@ -13,25 +14,46 @@ function createGrid(numberOfSquares) {
         pixels.classList.add('pixels');
         canvas.appendChild(pixels);
     };
-}
+    pixels = document.querySelectorAll('.pixels');
+    paintPixels(pixels);
+};
+//Create grid at page load up with a defult of 16x16 pixels
 createGrid(numberOfSquares);
+
+//Delete Grid function
+function deleteGrid(pixels) {
+    pixels.forEach(pixel => {
+        pixel.remove();
+    })
+};
+
+//Change the grid size
+const gridDimensionsButton = document.querySelector('#gridDimensionsButton');
+gridDimensionsButton.addEventListener('click', () => {
+    numberOfSquares = parseInt(prompt('What PixelxPixel Grid Size Do You Want?'));
+    deleteGrid(pixels);
+    createGrid(numberOfSquares);
+});
+
 //Paint the pixels if mouse is down.
-const pixels = document.querySelectorAll('.pixels');
 let isMouseDown = false;
+
 window.addEventListener("mousedown", () => {
     isMouseDown = true;
 });
-
 window.addEventListener("mouseup", () => {
     isMouseDown = false;
 });
 
-pixels.forEach((pixel) => {
-    pixel.addEventListener('mousemove', () => {
-        if (isMouseDown) {
-            pixel.classList.add('colouredPixel');
-        }
+function paintPixels(pixels) {
+    pixels.forEach((pixel) => {
+        pixel.addEventListener('mousemove', () => {
+            if (isMouseDown) {
+                pixel.classList.add('colouredPixel');
+            }
+        });
     });
-});
+}
+
 
 
