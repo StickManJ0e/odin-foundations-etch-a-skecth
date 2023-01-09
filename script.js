@@ -1,3 +1,4 @@
+//Initialise nesccerary variables at page load
 const canvas = document.querySelector('#canvas');
 const colorModeButton = document.querySelector('#color-mode-button');
 const greyscaleModeButton = document.querySelector('#greyscale-mode-button');
