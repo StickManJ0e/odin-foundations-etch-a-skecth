@@ -3,6 +3,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: "Poppins";
+    background-color: #ede0d4;
 }
 
 .content {
@@ -10,7 +12,6 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: 5vh;
 }
 
 .settings {
@@ -20,10 +21,13 @@ body {
 }
 
 #canvas {
-    border: 1px solid black;
+    border: 1px solid 463f3a;
     width: 500px;
     height: 500px;
     display: grid;
+    background-color: white;
+    margin: 5vh;
+    border-color: #463f3a;
 }
 
 .pixels {
@@ -31,3 +35,16 @@ body {
     width: 1fr;
 }
 
+h1 {
+    font-weight: 600;
+    font-size: 48px;
+    color: #463f3a;
+}
+
+.settings > button {
+    border-color: #463f3a;
+    background-color: #fffcf2;
+    font-family: "Poppins";
+    width: 12vh;
+    height: 7vh;
+}
