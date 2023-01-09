@@ -18,14 +18,14 @@ function createGrid(numberOfSquares) {
 
     //Create desired amount of pixels 
     for (let i = 0; i < (Math.pow(numberOfSquares, 2)); i++) {
-        const pixels = document.createElement('div');
+        pixels = document.createElement('div');
         pixels.classList.add('pixels');
         canvas.appendChild(pixels);
     };
 
     //Updates pixel nodelist and calls paintPixel function
     pixels = document.querySelectorAll('.pixels');
-    colorMode(pixels);
+    colorMode(defultColor);
 };
 
 //Create grid at page load up with a defult of 16x16 pixels
@@ -61,15 +61,15 @@ window.addEventListener("mouseup", () => {
 });
 
 //Function for mode button use
-function modeButton (button, modeFunction, pixels) {
+function modeButton (button, modeFunction) {
     button.addEventListener('click', () => {
-        modeFunction(pixels);
+        modeFunction();
     })
 }
 
-modeButton(colorModeButton, colorMode, pixels);
+modeButton(colorModeButton, colorMode);
 
-function colorMode(pixels) {
+function colorMode() {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
@@ -80,9 +80,9 @@ function colorMode(pixels) {
 };
 
 //When erase mode button is pressed, erase mode function is called
-modeButton(eraseModeButton, eraseMode, pixels);
+modeButton(eraseModeButton, eraseMode);
 
-function eraseMode(pixels) {
+function eraseMode() {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
@@ -93,7 +93,7 @@ function eraseMode(pixels) {
 };
 
 //Changes mode to rainbow
-modeButton(rainbowModeButton, rainbowMode, pixels);
+modeButton(rainbowModeButton, rainbowMode);
 
 //Generates a random hex decimal
 function getRandomColor() {
@@ -105,7 +105,7 @@ function getRandomColor() {
     return color;
 }
 //Gets a random color and changes background of each pixel to that color
-function rainbowMode(pixels) {
+function rainbowMode() {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
             if (isMouseDown) {
@@ -115,9 +115,9 @@ function rainbowMode(pixels) {
     });
 }
 // Button changes to grey scale mode which increases the opacity of black by 10% each time mouse is over pixel
-modeButton(greyscaleModeButton, greyscaleMode, pixels);
+modeButton(greyscaleModeButton, greyscaleMode);
 
-function greyscaleMode(pixels) {
+function greyscaleMode() {
     pixels.forEach((pixel) => {
         let defultOpacity = 0;
         pixel.addEventListener('mousemove', () => {
