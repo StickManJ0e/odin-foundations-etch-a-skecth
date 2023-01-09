@@ -12,10 +12,10 @@ let numberOfSquares = 16;
 //Change the canvas dimensions accoriding to the chosen # of squares
 function createGrid(numberOfSquares) {
     //Make grid dimensions match numberOfSquares and slign pixels accordingly
-    canvas.setAttribute('style', 
-    `grid-template-columns: repeat(${numberOfSquares}, 1fr);
+    canvas.setAttribute('style',
+        `grid-template-columns: repeat(${numberOfSquares}, 1fr);
     grid-auto-rows: 1fr;`);
-    
+
     //Create desired amount of pixels 
     for (let i = 0; i < (Math.pow(numberOfSquares, 2)); i++) {
         const pixels = document.createElement('div');
@@ -113,20 +113,19 @@ function rainbowMode(pixels) {
         });
     });
 }
-//Button changes to grey scale mode which increases the opacity of black by 10% each time mouse is over pixel
-// greyscaleModeButton.addEventListener('click', () => {
-//     greyscaleMode(pixels);
-// });
+// Button changes to grey scale mode which increases the opacity of black by 10% each time mouse is over pixel
+greyscaleModeButton.addEventListener('click', () => {
+    greyscaleMode(pixels);
+});
 
-// function greyscaleMode(pixels) {
-//     pixels.forEach((pixel) => {
-//         pixel.addEventListener('mousemove', () => {
-//             if (isMouseDown) {
-//                 pixel.style.backgroundColor = 'white';
-//                 pixel.classList.remove('colouredPixel');
-//                 pixel.style.backgroundColor = ('black', '0.1');
-//             }
-//         });
-//     });
-// }
+function greyscaleMode(pixels) {
+    pixels.forEach((pixel) => {
+        let defultOpacity = 0;
+        pixel.addEventListener('mousemove', () => {
+            if (isMouseDown) {
+                pixel.style.backgroundColor = `rgba(0, 0, 0, ${defultOpacity += 0.1})`;
+            }
+        });
+    });
+}
 
