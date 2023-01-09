@@ -60,10 +60,14 @@ window.addEventListener("mouseup", () => {
     isMouseDown = false;
 });
 
-//When color mode button is pressed, color mode function is called
-colorModeButton.addEventListener('click', () => {
-    colorMode(pixels);
-})
+//Function for mode button use
+function modeButton (button, modeFunction, pixels) {
+    button.addEventListener('click', () => {
+        modeFunction(pixels);
+    })
+}
+
+modeButton(colorModeButton, colorMode, pixels);
 
 function colorMode(pixels) {
     pixels.forEach((pixel) => {
@@ -76,9 +80,7 @@ function colorMode(pixels) {
 };
 
 //When erase mode button is pressed, erase mode function is called
-eraseModeButton.addEventListener('click', () => {
-    eraseMode(pixels);
-})
+modeButton(eraseModeButton, eraseMode, pixels);
 
 function eraseMode(pixels) {
     pixels.forEach((pixel) => {
@@ -91,9 +93,8 @@ function eraseMode(pixels) {
 };
 
 //Changes mode to rainbow
-rainbowModeButton.addEventListener('click', () => {
-    rainbowMode(pixels);
-});
+modeButton(rainbowModeButton, rainbowMode, pixels);
+
 //Generates a random hex decimal
 function getRandomColor() {
     let letters = '0123456789ABCDEF';
@@ -114,9 +115,7 @@ function rainbowMode(pixels) {
     });
 }
 // Button changes to grey scale mode which increases the opacity of black by 10% each time mouse is over pixel
-greyscaleModeButton.addEventListener('click', () => {
-    greyscaleMode(pixels);
-});
+modeButton(greyscaleModeButton, greyscaleMode, pixels);
 
 function greyscaleMode(pixels) {
     pixels.forEach((pixel) => {
