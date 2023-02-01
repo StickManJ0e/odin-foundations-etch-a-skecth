@@ -62,18 +62,31 @@ window.addEventListener("mouseup", () => {
     isMouseDown = false;
 });
 
+window.addEventListener("touchstart", () => {
+    isMouseDown = true;
+});
+window.addEventListener("touchend", () => {
+    isMouseDown = false;
+});
+
 //Function for mode button use
 function modeButton (button, modeFunction) {
     button.addEventListener('click', () => {
         modeFunction();
     })
 }
-
+//touchmove
 modeButton(colorModeButton, colorMode);
 
 function colorMode() {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
+            paintColor = colorValueSelector.value;
+            if (isMouseDown) {
+                pixel.style.backgroundColor = paintColor;
+            }
+        });
+        pixel.addEventListener('touchmove', () => {
             paintColor = colorValueSelector.value;
             if (isMouseDown) {
                 pixel.style.backgroundColor = paintColor;
