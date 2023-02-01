@@ -1,12 +1,13 @@
 //Initialise nesccerary variables at page load
 const canvas = document.querySelector('#canvas');
+const colorValueSelector = document.querySelector('input[type="color"]');
 const colorModeButton = document.querySelector('#color-mode-button');
 const greyscaleModeButton = document.querySelector('#greyscale-mode-button');
 const rainbowModeButton = document.querySelector('#rainbow-mode-button');
 const eraseModeButton = document.querySelector('#erase-mode-button');
 const gridDimensionsButton = document.querySelector('#grid-size-button');
 let pixels;
-let defultColor = 'black';
+let paintColor = colorValueSelector.value;
 let numberOfSquares = 16;
 
 //Create divs to represent each pixel
@@ -26,7 +27,7 @@ function createGrid(numberOfSquares) {
 
     //Updates pixel nodelist and calls paintPixel function
     pixels = document.querySelectorAll('.pixels');
-    colorMode(defultColor);
+    colorMode(paintColor);
 };
 
 //Create grid at page load up with a defult of 16x16 pixels
@@ -73,8 +74,9 @@ modeButton(colorModeButton, colorMode);
 function colorMode() {
     pixels.forEach((pixel) => {
         pixel.addEventListener('mousemove', () => {
+            paintColor = colorValueSelector.value;
             if (isMouseDown) {
-                pixel.style.backgroundColor = defultColor;
+                pixel.style.backgroundColor = paintColor;
             }
         });
     });
